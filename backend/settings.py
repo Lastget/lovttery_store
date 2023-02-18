@@ -14,9 +14,11 @@ from pathlib import Path
 import os 
 import dj_database_url
 import environ 
+import mimetypes
 
 env = environ.Env()
 environ.Env.read_env()
+mimetypes.add_type("text/css", ".css", True)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -181,8 +183,8 @@ MEDIA_URL ='/images/'
 #     STATICFILES_STORAGE =  'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 STATICFILES_DIRS = [ 
-    BASE_DIR /'backend'/ 'static',
-    BASE_DIR / 'frontend/build/static'
+    BASE_DIR /'static',
+    BASE_DIR /'frontend/build/static'
 ]
 
 MEDIA_ROOT = 'static/images'
