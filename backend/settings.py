@@ -16,7 +16,6 @@ import dj_database_url
 import environ 
 
 env = environ.Env()
-
 environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -103,7 +102,6 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = "backend.urls"
@@ -198,9 +196,9 @@ CORS_ALLOWED_ORIGINS = [
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-# AWS_ACCESS_KEY_ID = "AKIA2RSGJEV4JOT7RYUV" 
-# AWS_SECRET_ACCESS_KEY = "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"
-# AWS_STORAGE_BUCKET_NAME = "lovttery-bucket"
-# AWS_QUERYSTRING_AUTH = False
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_ACCESS_KEY_ID = "AKIA2RSGJEV4JOT7RYUV" 
+AWS_SECRET_ACCESS_KEY = "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"
+AWS_STORAGE_BUCKET_NAME = "lovttery-bucket"
+AWS_QUERYSTRING_AUTH = False
 
