@@ -182,8 +182,7 @@ MEDIA_ROOT = 'static/images'
 
 if not DEBUG: 
     STATIC_ROOT = BASE_DIR / 'staticfiles'
-
-
+   
 CORS_ALLOWED_ORIGINS = [
 "http://localhost:3000", # or any other your client port
 ]
