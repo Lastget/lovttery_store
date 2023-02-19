@@ -31,7 +31,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -96,6 +96,8 @@ SIMPLE_JWT = {
 
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+
     "django.middleware.common.CommonMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -104,6 +106,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    
 ]
 
 ROOT_URLCONF = "backend.urls"
@@ -135,15 +138,6 @@ WSGI_APPLICATION = "backend.wsgi.application"
 DATABASES = {
     'default': dj_database_url.parse(env('DATABASE_URL'))
     
-
-    # "default": {
-    #     "ENGINE": "django.db.backends.postgresql",
-    #     "USER": 'richard', 
-    #     "PASSWORD": '379fbP5%',
-    #     "HOST": 'lovttery-identifier.cpcb1xcadbsa.ap-northeast-1.rds.amazonaws.com',
-    #     "PORT": '5432',
-    #     "NAME": 'postgres'
-    # }
 }
 
 
@@ -178,9 +172,6 @@ USE_TZ = True
 STATIC_URL = "/static/"
 MEDIA_URL ='/images/'
 
-# if not DEBUG: 
-#     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-#     STATICFILES_STORAGE =  'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 STATICFILES_DIRS = [ 
     BASE_DIR /'static',
@@ -188,6 +179,10 @@ STATICFILES_DIRS = [
 ]
 
 MEDIA_ROOT = 'static/images'
+
+if not DEBUG: 
+    STATIC_ROOT = BASE_DIR / 'staticfiles'
+
 
 CORS_ALLOWED_ORIGINS = [
 "http://localhost:3000", # or any other your client port
@@ -199,8 +194,11 @@ CORS_ALLOWED_ORIGINS = [
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-AWS_ACCESS_KEY_ID = "AKIA2RSGJEV4JOT7RYUV" 
-AWS_SECRET_ACCESS_KEY = "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"
+AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID') 
+AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = "lovttery-bucket"
 AWS_QUERYSTRING_AUTH = False
 
+if os.getcwd() == '/app':
+    DEBUG  = False 
+     
