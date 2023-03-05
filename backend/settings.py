@@ -181,6 +181,7 @@ STATICFILES_DIRS = [
 MEDIA_ROOT = 'static/images'
 
 if not DEBUG: 
+    # When DEBUG = False production django will look static file from here. 
     STATIC_ROOT = BASE_DIR / 'staticfiles'
    
 CORS_ALLOWED_ORIGINS = [
