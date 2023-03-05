@@ -9,5 +9,6 @@ The website is currrently host on Render. <br />
 The project includes a backend server built with Django and a frontend interface built with React. <br />
 The project's data is stored in an AWS RDS database.  <br />
 
+![Site Homepage](/frontend/build/images/Screenshot_ecom.png)
 
 
